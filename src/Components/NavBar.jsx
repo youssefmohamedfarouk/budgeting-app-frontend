@@ -17,7 +17,16 @@ export default function NavBar({ transactions }) {
       <h1>
         <Link to="/">DOSH</Link>
       </h1>
-      <div>Total: ${tempTotal.toFixed(2)}</div>
+      <h2>
+        Total:
+        <span
+          style={{
+            color: tempTotal < 0 ? "red" : tempTotal < 300 ? "orange" : "green",
+          }}
+        >
+          ${tempTotal.toFixed(2)}
+        </span>
+      </h2>
       <div>
         <button>
           <Link to="/transactions">Transactions</Link>
