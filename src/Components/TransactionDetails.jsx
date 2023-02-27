@@ -9,7 +9,7 @@ function TransactionDetails({ API }) {
 
   const handleDelete = () => {
     axios
-      .delete(API + "/" + index)
+      .delete(API + "/transactions/" + index)
       .then((data) => navigate("/"))
       .catch((error) => console.log(error));
   };
