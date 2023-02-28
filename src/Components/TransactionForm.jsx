@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
-function TransactionForm({ API, transactions, setTransactions, stateHelper }) {
+function TransactionForm({ API, stateHelper }) {
   let { index } = useParams();
   let navigate = useNavigate();
 

@@ -57,14 +57,7 @@ function App() {
             />
             <Route
               path="/transactions/new"
-              element={
-                <New
-                  API={API}
-                  transactions={transactions}
-                  setTransactions={setTransactions}
-                  stateHelper={stateHelper}
-                />
-              }
+              element={<New API={API} stateHelper={stateHelper} />}
             />
             <Route
               path="/transactions/:index"
@@ -72,13 +65,7 @@ function App() {
             />
             <Route
               path="/transactions/:index/edit"
-              element={
-                <New
-                  API={API}
-                  transactions={transactions}
-                  setTransactions={setTransactions}
-                />
-              }
+              element={<New API={API} stateHelper={stateHelper} />}
             />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
