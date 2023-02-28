@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-function TransactionDetails({ API }) {
+function TransactionDetails({ API, stateHelper }) {
   const [transaction, setTransaction] = useState({});
   const { index } = useParams();
   const navigate = useNavigate();
@@ -10,7 +10,11 @@ function TransactionDetails({ API }) {
   const handleDelete = () => {
     axios
       .delete(API + "/transactions/" + index)
-      .then((data) => navigate("/"))
+      .then((res) => {
+        console.log(res);
+        stateHelper(res.data, "delete");
+      })
+      .then(() => navigate("/transactions"))
       .catch((error) => console.log(error));
   };
 

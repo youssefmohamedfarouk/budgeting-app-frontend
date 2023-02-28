@@ -1,6 +1,6 @@
 import TransactionForm from "../Components/TransactionForm";
 
-function New({ API, transactions, setTransactions }) {
+function New({ API, transactions, setTransactions, stateHelper }) {
   return (
     <div className="New">
       <h2>New</h2>
@@ -8,6 +8,7 @@ function New({ API, transactions, setTransactions }) {
         API={API}
         transactions={transactions}
         setTransactions={setTransactions}
+        stateHelper={stateHelper}
       />
     </div>
   );

@@ -28,6 +28,22 @@ function App() {
       .catch((e) => console.error("catch", e));
   }, []);
 
+  const stateHelper = (transaction, useCase) => {
+    const indexOfSingleTransaction = transactions.findIndex(
+      (e) => e.id === transaction.id
+    );
+    if (indexOfSingleTransaction !== -1) {
+      if (useCase === "update") {
+        transactions[indexOfSingleTransaction] = transaction;
+      } else if (useCase === "delete") {
+        transactions.splice(indexOfSingleTransaction, 1);
+      }
+    } else if (useCase === "create") {
+      transactions.push(transaction);
+    }
+    setTransactions([...transactions]);
+  };
+
   return (
     <div className="App">
       <Router>
@@ -46,10 +62,14 @@ function App() {
                   API={API}
                   transactions={transactions}
                   setTransactions={setTransactions}
+                  stateHelper={stateHelper}
                 />
               }
             />
-            <Route path="/transactions/:index" element={<Show API={API} />} />
+            <Route
+              path="/transactions/:index"
+              element={<Show API={API} stateHelper={stateHelper} />}
+            />
             <Route
               path="/transactions/:index/edit"
               element={

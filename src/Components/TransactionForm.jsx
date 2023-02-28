@@ -1,8 +1,9 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
-function TransactionForm({ API, transactions, setTransactions }) {
+function TransactionForm({ API, transactions, setTransactions, stateHelper }) {
   let { index } = useParams();
   let navigate = useNavigate();
 
@@ -43,17 +44,19 @@ function TransactionForm({ API, transactions, setTransactions }) {
       axios
         .post(`${API}/transactions`, {
           ...transaction,
-          id: Math.max(...transactions.map((item) => item.id), 0) + 1,
+          id: uuidv4(),
         })
         .then((a) => {
           // console.log(a);
-          setTransactions(a.data);
+          // setTransactions(a.data);
+          stateHelper(a.data, "create");
           navigate(`/transactions`);
         });
     } else {
       axios.put(`${API}/transactions/${index}`, transaction).then((a) => {
         // console.log(a);
-        setTransactions(a.data);
+        // setTransactions(a.data);
+        stateHelper(a.data, "update");
         navigate(`/transactions/${index}`);
       });
     }

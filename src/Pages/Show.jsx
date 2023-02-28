@@ -1,10 +1,10 @@
 import TransactionDetails from "../Components/TransactionDetails";
 
-function Show({ API }) {
+function Show({ API, stateHelper }) {
   return (
     <div className="Show">
       <h2>Show</h2>
-      <TransactionDetails API={API} />
+      <TransactionDetails API={API} stateHelper={stateHelper} />
     </div>
   );
 }

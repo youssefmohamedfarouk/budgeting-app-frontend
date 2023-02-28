@@ -25,12 +25,12 @@ function Transactions({ API, transactions }) {
             </tr>
           </thead>
           <tbody>
-            {transactions.map((transaction, index) => {
+            {transactions.map((transaction) => {
               return (
                 <Transaction
-                  key={index}
+                  key={transaction.id}
                   transaction={transaction}
-                  index={index}
+                  index={transaction.id}
                   API={API}
                 />
               );
